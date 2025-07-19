@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FcGoogle } from "react-icons/fc";
 import { supabase } from "@lib/supabase";
 import { toast, Toaster } from "sonner";
 
@@ -34,14 +32,7 @@ export default function Login() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/complete-profile`,
-      },
-    });
-  };
+
 
   return (
     <div className="flex min-h-screen w-full bg-slate-900 text-white">
@@ -110,7 +101,7 @@ export default function Login() {
         
 
           <p className="text-center text-sm text-slate-400 mt-6">
-            Don’t have an account?{' '}
+            Don&apos;t have an account?
             <button
               onClick={() => router.push('/signup')}
               className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4"

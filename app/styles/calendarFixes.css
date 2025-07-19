@@ -1,0 +1,24 @@
+/* Remove white blocks on weekends */
+.rbc-month-view .rbc-day-bg:nth-child(7n),
+.rbc-month-view .rbc-day-bg:nth-child(7n+1) {
+  background-color: #1f2937 !important; /* dark gray */
+}
+
+/* Highlight today */
+.rbc-today {
+  background-color: #374151 !important; /* darker for today */
+}
+
+/* Allow multi-line event titles */
+.rbc-event-content {
+  white-space: normal !important;
+  overflow: visible !important;
+  font-size: 0.85rem;
+}
+
+/* Improve event style */
+.rbc-event {
+  padding: 6px 10px !important;
+  min-height: 36px;
+  border: none;
+}

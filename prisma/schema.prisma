@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  name            String?
+  location        String?
+  
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  avatarUrl       String?
+  phone           String?
+  role            UserRole         @default(CUSTOMER)
+  providerProfile ProviderProfile?
+  services        Service[]        @relation("UserServices")
+  bookings        Booking[]
+  reviewsGiven    Review[]         @relation("UserReviewsGiven")
+
+  @@map("users")
+}
+
+
+model ProviderProfile {
+  id                 String        @id @default(uuid())
+  userId             String        @unique
+  serviceTypes       ServiceType[]
+  experience         Int?
+  bio                String?
+  user               User          @relation(fields: [userId], references: [id])
+  googleAccessToken  String?
+  googleRefreshToken String?
+  googleTokenExpiry  DateTime?
+
+  @@map("provider_profiles")
+}
+
+model Service {
+  id              String     @id @default(uuid())
+  user_id         String
+  user            User       @relation("UserServices", fields: [user_id], references: [id])
+  title           String
+  description     String?
+  category        String
+  basePrice       Int?      // ✅ Optional base price
+    startingFromPrice Int?     // ✅ Add this line
+
+  isCustomPricing Boolean    @default(false) // ✅ Indicates if final price is custom per booking
+  location        String
+  lat             Float?
+  lng             Float?
+  availableDays   String[]
+  availableTime   Json?
+  serviceRadiusKm Int?
+  experienceYears Int?
+  includesTools   Boolean?
+  tags            String[]
+  durationMinutes Int        @default(30)
+  created_at      DateTime   @default(now())
+  bookings        Booking[]
+
+  @@map("services")
+}
+
+
+model Booking {
+  id            String         @id @default(uuid())
+  userId        String
+  serviceId     String
+  createdAt     DateTime       @default(now())
+  scheduledAt   DateTime?
+  address       String
+  status        BookingStatus  @default(PENDING)
+  userNotes     String?        // ✅ New: Notes from user when booking
+  quotedPrice   Int?           // ✅ New: Final price decided after review
+  rejectionReason String? // add this
+
+
+  user          User           @relation(fields: [userId], references: [id])
+  service       Service        @relation(fields: [serviceId], references: [id])
+  review        Review?        @relation("BookingReview")
+}
+
+
+model Review {
+  id          String   @id @default(uuid())
+  bookingId   String   @unique
+  userId      String
+  rating      Int
+  comment     String?
+  createdAt   DateTime @default(now())
+
+  booking     Booking  @relation("BookingReview", fields: [bookingId], references: [id])
+  user        User     @relation("UserReviewsGiven", fields: [userId], references: [id])
+}
+
+enum UserRole {
+  CUSTOMER
+  PROVIDER
+  ADMIN
+}
+
+enum ServiceType {
+  COOKING_HELP
+  TUTORING
+  RIDES_AND_ERRANDS
+  CREATIVE_HELP
+  HOME_REPAIRS       // covers electrician, plumber, painter, etc.
+  CLEANING
+  PET_CARE
+  MOVING_HELP
+  OTHER
+}
+
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  REJECTED
+}

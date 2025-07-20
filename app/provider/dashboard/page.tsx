@@ -117,7 +117,7 @@ export default function DashboardPage() {
         style: {
           colors: '#9CA3AF',
         },
-        formatter: (value) => `₹${value}`
+        formatter: (value: number) => `₹${value}`
       }
     },
     colors: ['#4F46E5'],
@@ -128,7 +128,7 @@ export default function DashboardPage() {
         fontFamily: 'Inter, sans-serif',
       },
       y: {
-        formatter: (value) => `₹${value}`
+        formatter: (value: number) => `₹${value}`
       }
     }
   };
@@ -240,16 +240,16 @@ export default function DashboardPage() {
                 <Button variant="outline" size="sm">Create Availability</Button>
               </div>
             ) : (
-              bookings.slice(0, 4).map(({ id, scheduledAt, service, user }) => (
-                <div key={id} className="group flex items-center justify-between p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
+              bookings.slice(0, 4).map((booking) => (
+                <div key={booking.id} className="group flex items-center justify-between p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="bg-indigo-500/10 p-2 rounded-lg">
                       <CalendarDays className="w-5 h-5 text-indigo-400" />
                     </div>
                     <div>
-                      <div className="font-medium text-white">{user.name}</div>
+                      <div className="font-medium text-white">{booking.user.name}</div>
                       <div className="text-sm text-gray-400">
-                        {service.title} • {new Date(scheduledAt).toLocaleDateString()} at {new Date(scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {booking.service.title} • {new Date(booking.scheduledAt).toLocaleDateString()} at {new Date(booking.scheduledAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
                     </div>
                   </div>
@@ -278,17 +278,17 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-3">
-              {services.slice(0, 3).map(({ id, title, basePrice }) => (
-                <div key={id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
+              {services.slice(0, 3).map((service) => (
+                <div key={service.id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
                   <div className="bg-indigo-500/10 p-2 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-white truncate">{title}</div>
+                    <div className="font-medium text-white truncate">{service.title}</div>
                     <div className="text-sm text-gray-400">
-                      ₹{basePrice}/hour • <span className="text-green-400">Active</span>
+                      ₹{service.basePrice}/hour • <span className="text-green-400">Active</span>
                     </div>
                   </div>
                 </div>
@@ -309,7 +309,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {reviews.slice(0, 2).map((booking, i) => (
+              {reviews.slice(0, 2).map((booking) => (
                 <div key={booking.id} className="bg-slate-700/30 p-4 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <div className="font-medium text-white">{booking.user.name}</div>
@@ -319,7 +319,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <p className="text-gray-300 text-sm italic">
-                    "{booking.review?.comment || "No comment provided"}"
+                    &quot;{booking.review?.comment || "No comment provided"}&quot;
                   </p>
                 </div>
               ))}
@@ -350,8 +350,6 @@ export default function DashboardPage() {
             />
           </div>
         </Panel>
-
-
       </div>
     </div>
   );

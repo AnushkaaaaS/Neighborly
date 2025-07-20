@@ -97,9 +97,10 @@ export default function HomePage() {
             <p className="text-slate-200 text-base sm:text-lg mb-4">
               Neighborly brings back the old-fashioned way of helping each other out, but with modern convenience.
             </p>
-            <p className="text-slate-400 text-sm sm:text-base">
-              It is not about professional services - it is about that home cook who makes extra meals, the retired teacher who tutors kids, or your neighbor who is great at fixing things. Real help from real people in your community.
-            </p>
+          <p className="text-slate-400 text-sm sm:text-base">
+  {"It is not about professional services – it is about that home cook who makes extra meals, the retired teacher who tutors kids, or your neighbor who is great at fixing things. Real help from real people in your community."}
+</p>
+
             <div className="mt-6 flex items-center gap-2 text-sm sm:text-base text-emerald-400">
               <Heart className="w-5 h-5" />
               <span>Building community, one helpful connection at a time</span>

@@ -16,7 +16,7 @@ export default function ProviderBookingsPage() {
   const [showRejectModal, setShowRejectModal] = useState(false);
 const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
-  const [bookings, setBookings] = useState<any[]>([]);
+  const [bookings, setBookings] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'ALL' | 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -323,7 +323,7 @@ const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
               : b
           )
         );
-      } catch (err) {
+      } catch  {
         alert('Failed to reject booking');
       } finally {
         setShowRejectModal(false);

@@ -486,7 +486,7 @@ export default function DashboardPage() {
           const daySlots = bookingModal.availableTime?.filter((s: string) => s.startsWith(dayName));
           
           daySlots?.forEach((slot: string) => {
-            const [_, times] = slot.split(/:(.+)/);
+const [, times] = slot.split(/:(.+)/);
             const [from, to] = times.split("-");
             if (from && to) {
               const allSlots = generateTimeSlots(bookingModal.durationMinutes || 30, from, to);

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  LogOut, Search, Phone, CalendarClock, UserCircle, LayoutDashboard,
+  LogOut, Search,  CalendarClock, UserCircle, LayoutDashboard,
   BookOpenCheck, MapPin, Settings, X
 } from "lucide-react";
 import Image from "next/image";

@@ -3,10 +3,9 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@lib/supabase";
-import { Sparkles, Smile, LogOut, CalendarDays, Wallet, Star, MessageCircle } from "lucide-react";
+import { Sparkles, Smile, CalendarDays, Wallet, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import dynamic from 'next/dynamic';
-import { title } from "process";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -279,7 +278,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-3">
-              {services.slice(0, 3).map(({ id, title, basePrice, status }) => (
+              {services.slice(0, 3).map(({ id, title, basePrice }) => (
                 <div key={id} className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-700/50 transition-colors">
                   <div className="bg-indigo-500/10 p-2 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">

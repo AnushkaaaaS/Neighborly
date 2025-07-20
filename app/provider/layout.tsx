@@ -5,10 +5,8 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   CalendarDays,
-  MessageCircle,
   Wrench,
   Star,
-  Wallet,
   Settings,
   LogOut,
   Calendar,

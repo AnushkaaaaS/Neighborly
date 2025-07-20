@@ -4,7 +4,6 @@ import { ReactNode, useState } from "react";
 import {
   LayoutDashboard,
   BookOpenCheck,
-  MapPin,
   Settings,
   LogOut,
   Menu,

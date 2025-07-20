@@ -1,6 +1,6 @@
 // app/page.tsx
 import Link from "next/link";
-import { PlayCircle, Users, Handshake, Star, Heart, Home, Wrench, BookOpen, Smartphone, Search, MessageSquare } from "lucide-react";
+import {  Handshake, Heart, Home, Wrench, BookOpen, Smartphone, Search, MessageSquare } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -98,7 +98,7 @@ export default function HomePage() {
               Neighborly brings back the old-fashioned way of helping each other out, but with modern convenience.
             </p>
             <p className="text-slate-400 text-sm sm:text-base">
-              It's not about professional services - it's about that home cook who makes extra meals, the retired teacher who tutors kids, or your neighbor who's great at fixing things. Real help from real people in your community.
+              It is not about professional services - it is about that home cook who makes extra meals, the retired teacher who tutors kids, or your neighbor who is great at fixing things. Real help from real people in your community.
             </p>
             <div className="mt-6 flex items-center gap-2 text-sm sm:text-base text-emerald-400">
               <Heart className="w-5 h-5" />
@@ -181,7 +181,7 @@ export default function HomePage() {
                 description: "Build relationships while helping each other",
                 icon: <Heart className="w-10 h-10 text-emerald-400" />
               }
-            ].map((step, index) => (
+            ].map((step) => (
               <div key={step.title} className="text-center">
                 <div className="bg-emerald-500/10 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                   {step.icon}
@@ -202,7 +202,7 @@ export default function HomePage() {
             {[
               {
                 name: "Priya M.",
-                review: "Found a lovely neighbor who cooks extra meals twice a week. It's been a lifesaver after my surgery!",
+                review: "Found a lovely neighbor who cooks extra meals twice a week. It has been a lifesaver after my surgery!",
                 role: "Home-cooked meals",
                 image: "https://randomuser.me/api/portraits/women/44.jpg"
               },
@@ -246,7 +246,7 @@ export default function HomePage() {
             Have a skill to share? Join our community!
           </h3>
           <p className="text-slate-200 mb-6 sm:mb-8">
-            Whether it's a few hours a week or just occasionally, your skills can make a real difference to neighbors nearby.
+            Whether it is a few hours a week or just occasionally, your skills can make a real difference to neighbors nearby.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@lib/prisma';
 
+// GET provider profile by ID
 export async function GET(req: NextRequest) {
   try {
     const providerId = req.nextUrl.searchParams.get('id');
@@ -33,24 +34,35 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     console.error('[PROVIDER_PROFILE_GET_ERROR]', error);
     return NextResponse.json(
-      { error: 'Failed to fetch profile' }, 
+      { error: 'Failed to fetch profile' },
       { status: 500 }
     );
   }
 }
 
+// PUT to update provider profile
 export async function PUT(req: NextRequest) {
   try {
-    const { id, name, phone, location, avatarUrl, bio, experience, serviceTypes } = await req.json();
+    const body = (await req.json()) as {
+      id: string;
+      name: string;
+      phone: string;
+      location: string;
+      avatarUrl?: string;
+      bio?: string;
+      experience?: number;
+      serviceTypes?: string[];
+    };
+
+    const { id, name, phone, location, avatarUrl, bio, experience, serviceTypes } = body;
 
     if (!id) {
       return NextResponse.json(
-        { error: 'Provider ID is required' }, 
+        { error: 'Provider ID is required' },
         { status: 400 }
       );
     }
 
-    // Update user info
     const updatedUser = await prisma.user.update({
       where: { id },
       data: {
@@ -62,7 +74,6 @@ export async function PUT(req: NextRequest) {
       }
     });
 
-    // Update or create provider profile
     const updatedProfile = await prisma.providerProfile.upsert({
       where: { userId: id },
       update: {
@@ -78,7 +89,7 @@ export async function PUT(req: NextRequest) {
       }
     });
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
       data: {
         ...updatedUser,
@@ -88,14 +99,14 @@ export async function PUT(req: NextRequest) {
   } catch (error) {
     console.error('[PROVIDER_PROFILE_UPDATE_ERROR]', error);
     return NextResponse.json(
-      { error: 'Failed to update profile' }, 
+      { error: 'Failed to update profile' },
       { status: 500 }
     );
   }
 }
 
-// Add this if you need to handle other methods
-export async function POST(req: NextRequest) {
+// POST not allowed
+export async function POST() {
   return NextResponse.json(
     { error: 'Method not allowed' },
     { status: 405 }

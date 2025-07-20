@@ -2,7 +2,6 @@ import { prisma } from "@lib/prisma";
 import { NextResponse } from "next/server";
 import { ServiceType } from "@prisma/client";
 
-
 // Define valid enum values (must match Prisma schema)
 const validServiceTypes = Object.values(ServiceType);
 
@@ -20,8 +19,8 @@ export async function POST(req: Request) {
       bio,
     } = body;
 
-    // ✅ Step 1: Create user
-    const user = await prisma.user.create({
+    // ✅ Step 1: Create user (don't assign to unused variable)
+    await prisma.user.create({
       data: {
         id,
         email,
@@ -41,15 +40,14 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Invalid service type" }, { status: 400 });
       }
 
- await prisma.providerProfile.create({
-  data: {
-    userId: id,
-    serviceTypes: [normalizedServiceType],
-    experience: experience ? parseInt(experience) : undefined,
-    bio: bio || "",
-  },
-});
-
+      await prisma.providerProfile.create({
+        data: {
+          userId: id,
+          serviceTypes: [normalizedServiceType],
+          experience: experience ? parseInt(experience) : undefined,
+          bio: bio || "",
+        },
+      });
     }
 
     return NextResponse.json({ message: "User saved successfully" }, { status: 200 });

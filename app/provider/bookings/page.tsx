@@ -16,7 +16,7 @@ export default function ProviderBookingsPage() {
   const [showRejectModal, setShowRejectModal] = useState(false);
 const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
-  const [bookings, setBookings] = useState<unknown[]>([]);
+  const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'ALL' | 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -64,9 +64,8 @@ const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
           console.warn('Booking saved, but calendar sync failed.');
         }
       }
-    } catch (err) {
+    } catch  {
       alert("Booking confirmed, but failed to sync with Google Calendar.");
-      console.error(err);
     }
   };
 
@@ -82,38 +81,7 @@ const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-500"></div>
     </div>
   );
-  {showRejectModal && selectedBookingId && (
-  <RejectModal
-    isOpen={showRejectModal}
-    onClose={() => setShowRejectModal(false)}
-    onConfirm={async (reason) => {
-  try {
-    const res = await fetch('/api/bookings/update', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        bookingId: selectedBookingId,
-        status: 'REJECTED', // 👈 Change this
-        rejectionReason: reason,
-      }),
-    });
-
-    if (!res.ok) throw new Error('Failed to reject');
-    setBookings((prev) =>
-      prev.map((b) =>
-        b.id === selectedBookingId ? { ...b, status: 'REJECTED', rejectionReason: reason } : b
-      )
-    );
-  } catch (err) {
-    alert('Failed to reject booking');
-  } finally {
-    setShowRejectModal(false);
-    setSelectedBookingId(null);
-  }
-}}
-
-  />
-)}
+ 
 
 
   return (

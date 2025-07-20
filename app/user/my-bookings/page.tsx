@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CalendarClock, MapPin, UserCircle, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { CalendarClock, MapPin, UserCircle, Star } from 'lucide-react';
 import Image from 'next/image';
 import { supabase } from '@lib/supabase';
 
@@ -34,7 +34,6 @@ export default function MyBookingsPage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState<string | null>(null);
   const [reviewData, setReviewData] = useState<Record<string, { rating: number; comment: string }>>({});
-  const [expandedBooking, setExpandedBooking] = useState<string | null>(null);
 
   // Existing data fetching logic
   useEffect(() => {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search, CalendarClock, UserCircle, X, LogOut, MapPin, Clock, DollarSign, Info, CheckCircle } from "lucide-react";
+import { Search, UserCircle, X, LogOut, MapPin, Clock,  Info, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import { Wrench } from "lucide-react";
 
@@ -480,7 +480,7 @@ export default function DashboardPage() {
           return allowedDays.includes(date.getDay()) && !isBefore(date, today);
         };
 
-        let timeSlots: string[] = [];
+        const timeSlots: string[] = [];
         if (bookingDate) {
           const dayName = bookingDate.toLocaleDateString("en-US", { weekday: "short" });
           const daySlots = bookingModal.availableTime?.filter((s: string) => s.startsWith(dayName));

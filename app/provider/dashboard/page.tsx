@@ -24,7 +24,7 @@ export default function DashboardPage() {
   const [showBanner, setShowBanner] = useState(true);
   const [services, setServices] = useState([]);
   const [isGoogleConnected, setIsGoogleConnected] = useState(false);
-  const [userId, setUserId] = useState<string | null>(null);
+  const [, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {

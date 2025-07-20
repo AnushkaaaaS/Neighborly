@@ -53,7 +53,7 @@ export default function MyBookingsPage() {
   }, []);
 
   // Existing review handlers
-  const handleReviewChange = (bookingId: string, field: 'rating' | 'comment', value: any) => {
+  const handleReviewChange = (bookingId: string, field: 'rating' | 'comment', value: unknown) => {
     setReviewData(prev => ({
       ...prev,
       [bookingId]: {
@@ -116,7 +116,7 @@ export default function MyBookingsPage() {
 
       {bookings.length === 0 ? (
         <div className="bg-slate-800 rounded-xl p-8 text-center">
-          <p className="text-gray-400">You haven't booked any services yet.</p>
+          <p className="text-gray-400">You have not booked any services yet.</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -209,7 +209,7 @@ export default function MyBookingsPage() {
                           />
                         ))}
                       </div>
-                      <p className="text-sm italic">"{booking.review.comment}"</p>
+                      <p className="text-sm italic">{booking.review.comment}</p>
                     </div>
                   ) : (
                     <div className="space-y-4">

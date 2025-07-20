@@ -16,7 +16,7 @@ export default function ProviderBookingsPage() {
   const [showRejectModal, setShowRejectModal] = useState(false);
 const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
-  const [bookings, setBookings] = useState<any[]>([]);
+  const [bookings, setBookings] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'ALL' | 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
@@ -156,7 +156,7 @@ const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
             <select
               className="appearance-none bg-slate-800 border border-slate-700 text-white pl-10 pr-8 py-2 rounded-lg w-full"
               value={filter}
-              onChange={(e) => setFilter(e.target.value as any)}
+              onChange={(e) => setFilter(e.target.value as unknown)}
             >
               <option value="ALL">All Bookings</option>
               <option value="PENDING">Pending</option>

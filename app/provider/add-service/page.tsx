@@ -307,7 +307,7 @@ export default function AddServicePage() {
                 required={form.isCustomPricing}
                 className="bg-slate-800 border-slate-700 focus:border-cyan-500"
               />
-              <p className="text-xs text-gray-400">This is the minimum price you'd charge for this service</p>
+              <p className="text-xs text-gray-400">This is the minimum price you would charge for this service</p>
             </div>
           ) : (
             <div className="space-y-2">

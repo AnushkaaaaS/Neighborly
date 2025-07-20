@@ -118,7 +118,7 @@ export function AuthForm({ type }: AuthFormProps) {
 
         router.push(`/verify-email?email=${encodeURIComponent(formData.email)}`)
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(
         err.message.includes('Email rate limit exceeded') 
           ? 'Too many attempts. Please try again later.'

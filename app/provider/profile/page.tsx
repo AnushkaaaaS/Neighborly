@@ -13,7 +13,7 @@ import { supabase } from "@lib/supabase";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ProviderProfilePage() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<unknown>(null);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);

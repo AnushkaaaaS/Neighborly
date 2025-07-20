@@ -15,9 +15,9 @@ export default function UserDashboard() {
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [services, setServices] = useState<any[]>([]);
-  const [selectedService, setSelectedService] = useState<any | null>(null);
-  const [bookingModal, setBookingModal] = useState<any | null>(null);
+  const [services, setServices] = useState<unknown[]>([]);
+  const [selectedService, setSelectedService] = useState<unknown | null>(null);
+  const [bookingModal, setBookingModal] = useState<unknown| null>(null);
 
   // Booking form fields
   const [bookingDate, setBookingDate] = useState("");

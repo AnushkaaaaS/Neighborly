@@ -32,7 +32,7 @@ export default function EditServicePage() {
   const router = useRouter();
   const locationRef = useRef<HTMLInputElement>(null);
 
-  const [form, setForm] = useState<any>(null);
+  const [form, setForm] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -78,7 +78,7 @@ export default function EditServicePage() {
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
         if (place?.formatted_address) {
-          setForm((prev: any) => ({ 
+          setForm((prev: unknown) => ({ 
             ...prev, 
             location: place.formatted_address,
             lat: place.geometry?.location?.lat(),
@@ -89,16 +89,16 @@ export default function EditServicePage() {
     }
   }, [form?.location]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: unknown) => {
     const { name, value, type, checked } = e.target;
-    setForm((prev: any) => ({
+    setForm((prev: unknown) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleDaysChange = (day: string) => {
-    setForm((prev: any) => {
+    setForm((prev: unknown) => {
       const updatedDays = prev.availableDays.includes(day)
         ? prev.availableDays.filter((d: string) => d !== day)
         : [...prev.availableDays, day];
@@ -110,7 +110,7 @@ export default function EditServicePage() {
   };
 
   const handleTimeSlotChange = (day: string, index: number, field: "from" | "to", value: string) => {
-    setForm((prev: any) => {
+    setForm((prev: unknown) => {
       const newDaySlots = [...(prev.availableTime[day] || [])];
       newDaySlots[index][field] = value;
       return {
@@ -121,7 +121,7 @@ export default function EditServicePage() {
   };
 
   const addTimeSlot = (day: string) => {
-    setForm((prev: any) => ({
+    setForm((prev: unknown) => ({
       ...prev,
       availableTime: {
         ...prev.availableTime,
@@ -131,17 +131,17 @@ export default function EditServicePage() {
   };
 
   const removeTimeSlot = (day: string, index: number) => {
-    setForm((prev: any) => ({
+    setForm((prev: unknown) => ({
       ...prev,
       availableTime: {
         ...prev.availableTime,
-        [day]: prev.availableTime[day].filter((_: any, i: number) => i !== index),
+        [day]: prev.availableTime[day].filter((_: unknown, i: number) => i !== index),
       },
     }));
   };
 
   const toggleTag = (tag: string) => {
-    setForm((prev: any) => {
+    setForm((prev: unknown) => {
       const tags = prev.tags.includes(tag)
         ? prev.tags.filter((t: string) => t !== tag)
         : [...prev.tags, tag];
@@ -181,7 +181,7 @@ export default function EditServicePage() {
     return true;
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: unknown) => {
     e.preventDefault();
     if (!validateForm()) return;
     setShowConfirmation(true);
@@ -319,7 +319,7 @@ export default function EditServicePage() {
                 required={form.isCustomPricing}
                 className="bg-slate-800 border-slate-700 focus:border-cyan-500"
               />
-              <p className="text-xs text-gray-400">This is the minimum price you'd charge for this service</p>
+              <p className="text-xs text-gray-400">This is the minimum price you would charge for this service</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -431,7 +431,7 @@ export default function EditServicePage() {
           {form.availableDays.map((day: string) => (
             <div key={day} className="space-y-2 mb-4 p-3 bg-slate-800 rounded-lg">
               <h3 className="text-cyan-300 font-medium">{day} Time Slots</h3>
-              {form.availableTime[day]?.map((slot: any, idx: number) => (
+              {form.availableTime[day]?.map((slot: unknown, idx: number) => (
                 <div key={idx} className="flex gap-2 items-center mb-2">
                   <Input
                     type="time"
@@ -542,7 +542,7 @@ export default function EditServicePage() {
                 <ul className="list-disc pl-5">
                   {form.availableDays.map((day: string) => (
                     <li key={day}>
-                      {day}: {form.availableTime[day]?.map((slot: any) => `${slot.from} - ${slot.to}`).join(", ")}
+                      {day}: {form.availableTime[day]?.map((slot: unknown) => `${slot.from} - ${slot.to}`).join(", ")}
                     </li>
                   ))}
                 </ul>

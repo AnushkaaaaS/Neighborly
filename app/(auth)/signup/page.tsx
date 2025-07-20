@@ -131,7 +131,7 @@ export default function Signup() {
           Find help or offer your skills <br /> in your neighborhood.
         </h2>
         <p className="text-slate-400 text-lg mt-4 text-center max-w-md">
-          Join a trusted community where people help each other grow. Whether you're offering services or seeking support — Neighborly connects you locally.
+          Join a trusted community where people help each other grow. Whether you are offering services or seeking support — Neighborly connects you locally.
         </p>
       </div>
 
@@ -184,7 +184,7 @@ export default function Signup() {
             </div>
             <div className="flex items-center gap-2 pt-2">
               <input type="checkbox" id="provider" onChange={(e) => setIsProvider(e.target.checked)} className="accent-emerald-400 w-4 h-4" />
-              <Label htmlFor="provider" className="text-slate-300 text-sm">I'm a service provider</Label>
+              <Label htmlFor="provider" className="text-slate-300 text-sm">I am a service provider</Label>
             </div>
           </div>
 

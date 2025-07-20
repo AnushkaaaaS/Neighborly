@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ProviderReviewsPage() {
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<unknown[]>([]);
   const [loading, setLoading] = useState(true);
   const [averageRating, setAverageRating] = useState(0);
 
@@ -25,7 +25,7 @@ export default function ProviderReviewsPage() {
         
         // Calculate average rating
         if (data.length > 0) {
-          const avg = data.reduce((sum: number, review: any) => sum + review.rating, 0) / data.length;
+          const avg = data.reduce((sum: number, review: unknown) => sum + review.rating, 0) / data.length;
           setAverageRating(parseFloat(avg.toFixed(1)));
         }
         

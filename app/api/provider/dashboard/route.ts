@@ -86,7 +86,7 @@ async function fetchUpcomingBookings(supabase: any, userId: string) {
 
   if (error) throw error
 
-  return data.map((booking: any) => ({
+  return data.map((booking: unknown) => ({
     id: booking.id,
     client: booking.user?.name || booking.user?.email?.split('@')[0] || 'Client',
     service: booking.service?.title || 'Service',

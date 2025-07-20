@@ -14,7 +14,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const whereClause: any = {
+    const whereClause: unknown = {
       service: { user_id: userId }
     };
 

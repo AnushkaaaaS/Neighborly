@@ -45,8 +45,8 @@ export default function ProviderCalendar() {
         if (!res.ok) throw new Error(result.message || 'Failed to fetch bookings');
 
         const mappedEvents = result.bookings
-          .filter((booking: any) => booking.status === 'CONFIRMED' || booking.status === 'COMPLETED')
-          .map((booking: any) => {
+          .filter((booking: unknown) => booking.status === 'CONFIRMED' || booking.status === 'COMPLETED')
+          .map((booking: unknown) => {
             const start = new Date(booking.scheduledAt);
             const end = new Date(start.getTime() + booking.durationMinutes * 60000);
 
